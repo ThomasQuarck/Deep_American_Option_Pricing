@@ -16,9 +16,9 @@ The pricing engine treats the early exercise problem as an Optimal Stopping prob
 
 1.  **Simulation:** 100,000 asset paths generated via Geometric Brownian Motion.
 2.  **Regression:** At each time step $t$, a Feed-Forward Neural Network approximates the **Continuation Value** (expected future cashflows).
-3.  **Optimization:** The model compares the immediate payoff $(K - S_t)^+$ with the network's prediction to determine the optimal exercise boundary.
+3.  **Optimization:** The model compares the immediate payoff $h(S_t) = (K - S_t)^+$ with the network's prediction to determine the optimal exercise boundary.
 
-$$V_t(S_t) = \max \left( h(S_t), \mathbb{E}[ D_{t, t+1} V_{t+1} | S_t ] \right)$$
+$$V_t(S_t) = \max \left( h(S_t), \mathbb{E}[ e^{-rdt} V_{t+1} | S_t ] \right)$$
 
 ## Technical Implementation
 * **Framework:** PyTorch (chosen for its dynamic computation graph and easy GPU casting).
